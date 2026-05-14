@@ -1,14 +1,5 @@
 # Algorithms Analysis: A Comprehensive Study of Classic Algorithms
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/algorithms_analysis?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/algorithms_analysis?style=flat-square)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/algorithms_analysis?style=flat-square)
-![GitHub license](https://img.shields.io/github/license/yourusername/algorithms_analysis?style=flat-square)
-
----
-
-## Overview
-
 Dive deep into the world of classic algorithms with this comprehensive repository. This project provides detailed implementations, theoretical explanations, and complexity analyses of fundamental algorithms in Jupyter Notebook format.
 
 Perfect for:
@@ -24,7 +15,6 @@ Each notebook follows a consistent structure:
 - **Output** — Visual demonstration of results
 - **Complexity Analysis** — Time and space complexity breakdown
 
----
 
 ## Features
 
@@ -36,7 +26,6 @@ Each notebook follows a consistent structure:
 - **Performance Analysis** — Complete complexity breakdowns for each algorithm
 - **Ready-to-Use** — All code is production-ready and tested
 
----
 
 ## Tech Stack
 
@@ -51,7 +40,6 @@ Each notebook follows a consistent structure:
 - Jupyter Notebook environment
 - Basic understanding of Python programming
 
----
 
 ## Installation
 
@@ -98,7 +86,6 @@ docker run -it --rm -p 8888:8888 algorithms-analysis
 
 Access Jupyter Notebook at `http://localhost:8888` with the token provided in the output.
 
----
 
 ## Usage
 
@@ -139,33 +126,31 @@ if __name__ == "__main__":
         print(f"{a:>10} {b:>10} {gcd_iterative(a, b):>10}")
 ```
 
----
 
 ## Project Structure
 
 ```
 algorithms_analysis/
 │
-├── .gitignore                  # Specifies intentionally untracked files
-├── requirements.txt            # Project dependencies
+|-- .gitignore                  # Specifies intentionally untracked files
+|-- requirements.txt            # Project dependencies
 │
-├── 01_gcd.ipynb                # Greatest Common Divisor (Euclidean Algorithm)
-├── 02_fibonacci.ipynb          # Fibonacci Sequence
-├── 03_linear_search.ipynb      # Linear Search
-├── 04_bubble_sort.ipynb        # Bubble Sort
-├── 05_insertion_sort.ipynb     # Insertion Sort
-├── 06_quick_sort.ipynb         # Quick Sort
-├── 07_merge_sort.ipynb         # Merge Sort
-├── 08_kruskal_algorithm.ipynb  # Kruskal's Algorithm for MST
-├── 09_dijkstra_algorithm.ipynb # Dijkstra's Algorithm
-├── 10_binary_knapsack.ipynb    # 0/1 Knapsack Problem
-├── 11_n_queens.ipynb           # N Queens Problem
-├── 12_subset_sum.ipynb         # Subset Sum Problem
+|-- 01_gcd.ipynb                # Greatest Common Divisor (Euclidean Algorithm)
+|-- 02_fibonacci.ipynb          # Fibonacci Sequence
+|-- 03_linear_search.ipynb      # Linear Search
+|-- 04_bubble_sort.ipynb        # Bubble Sort
+|-- 05_insertion_sort.ipynb     # Insertion Sort
+|-- 06_quick_sort.ipynb         # Quick Sort
+|-- 07_merge_sort.ipynb         # Merge Sort
+|-- 08_kruskal_algorithm.ipynb  # Kruskal's Algorithm for MST
+|-- 09_dijkstra_algorithm.ipynb # Dijkstra's Algorithm
+|-- 10_binary_knapsack.ipynb    # 0/1 Knapsack Problem
+|-- 11_n_queens.ipynb           # N Queens Problem
+|-- 12_subset_sum.ipynb         # Subset Sum Problem
 │
-└── latex/                      # LaTeX documentation (optional)
+|-- latex/                      # LaTeX documentation (optional)
 ```
 
----
 
 ## Configuration
 
@@ -194,13 +179,11 @@ if __name__ == "__main__":
     print(f"F(n):   " + " ".join(f"{fibonacci_iterative(i):>3}" for i in range(print_range)))
 ```
 
----
 
 ## License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
----
 
 ## Additional Resources
 
