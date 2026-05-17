@@ -21,10 +21,10 @@ GCD(a, b)
 
 #### 1.2.1. Time Complexity
 
-1. **Best Case** - Occurs when the algorithm terminates on single step i.e. either $a = 0$ or $a\;mod\;b = 0$.
+1. **Best Case** - Occurs when the algorithm terminates on single step i.e. either $a = 0$ or $a\:mod\:b = 0$.
    so, $B(n) = O(n)$
 
-2. **Average Case** - Occurs when each step replaces $(a,b)\rightarrow(b, a\;mod\;b)$.
+2. **Average Case** - Occurs when each step replaces $(a,b)\rightarrow(b, a\:mod\:b)$.
    so, $A(n) = O(n)$
 
 3. **Worst Case** - Occurs when reduction happens as slow as possible.
@@ -60,12 +60,12 @@ FIBONACCI(n)
 
 ### 2.2. Complexity Analysis
 
-#### 3.2.1. Time Complexity
+#### 2.2.1. Time Complexity
 
 Algorithm has a single loop that runs from $2$ to $n$, iterating ($n-2$) times.
 so, $T(n) = O(n)$
 
-#### 3.2.2. Space Complexity
+#### 2.2.2. Space Complexity
 
 Only three variables used ($a, b, temp$) regardless of the input size $n$.
 so, $S(n)=O(1)$
