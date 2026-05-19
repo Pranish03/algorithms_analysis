@@ -35,29 +35,24 @@ $S(n)=O(n^2)$
 
 ---
 
-## 2. Job Sequencing with Deadlines
+## 2. 0/1 Knapsack Problem
 
 ### 2.1. Algorithm(Pseudocode)
 
 ```.txt
-SUBROUTINE JobSequencing(jobs, n)
-    sort_desc_by_profit(jobs)
-    maxDeadline <- find_max_deadline(jobs)
+SUBROUTINE BinaryKnapsack(items, n, W)
+    IF n == 0 OR W == 0 THEN
+        RETURN 0
+    END IF
 
-    slot <- [1 : maxDeadline]
-    totalProfit <- 0
-
-    FOR i <- 0 TO n - 1 DO
-        FOR j <- jobs[i].deadline DOWN TO 1 DO
-            IF slot[j] == EMPTY THEN
-                slot[j] <- jobs[i].id
-                totalProfit <- totalProfit + jobs[i].profit
-                BREAK
-            END IF
-        END FOR
-    END FOR
-
-    RETURN (slot, totalProfit)
+    IF items[n-1].weight > W THEN
+        RETURN BinaryKnapsack(items, n - 1, W)
+    ELSE
+        RETURN max(
+            items[n-1].value + BinaryKnapsack(items, n - 1, W - items[n-1].weight),
+            BinaryKnapsack(items, n - 1, W)
+        )
+    END IF
 END SUBROUTINE
 ```
 
@@ -65,7 +60,11 @@ END SUBROUTINE
 
 #### 2.2.1. Time Complexity
 
-$T(n) = O(n^2)$
+$T(n, W) = O(nW)$
+
+#### 2.2.2. Space Complexity
+
+$S(n, W) = O(nW)$
 
 ---
 
