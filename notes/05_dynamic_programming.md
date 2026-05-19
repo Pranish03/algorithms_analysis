@@ -68,28 +68,24 @@ $S(n, W) = O(nW)$
 
 ---
 
-## 3. Huffman Coding
+## 3. Longest Common Subsequence
 
 ### 3.1. Algorithm(Pseudocode)
 
 ```.txt
-SUBROUTINE Huffman(C, n)
-    Q <- minHeap(C)
+SUBROUTINE LCS(X, Y, m, n)
+    IF m == 0 OR n == 0 THEN
+        RETURN 0
+    END IF
 
-    FOR i <- 1 TO n - 1 DO
-        create node n
-        x <- Q.extract()
-        y <- Q.extract()
-
-        n.left <- x
-        n.right <- y
-
-        n.data <- x.freq + y.freq
-
-        Q.insert(n)
-    END FOR
-
-    RETURN extract(Q)
+    IF X[m] == Y[n] THEN
+        RETURN 1 + LCS(X, Y, m - 1, n - 1)
+    ELSE
+        RETURN max(
+            LCS(X, Y, m - 1, n),
+            LCS(X, Y, m, n - 1)
+        )
+    END IF
 END SUBROUTINE
 
 ```
@@ -98,32 +94,29 @@ END SUBROUTINE
 
 #### 3.2.1. Time Complexity
 
-$T(n) = O(n) \text{ Building heap } + O(n\text{log}_2n) \text{ Each insert/extract } = O(n\text{log}_2n)$
+$T(m, n) = O(2^{m+n})$ Using recursion
 
-#### 2.2.2. Space Complexity
-
-Creates node n in each iteration.
-so, $S(n)=O(n)$
+$T(m, n) = O(mn)$ Using memoization
 
 ---
 
-## 4. Kruskal's Algorithm
+## 4. Floyd Warshall Algorithm
 
 ### 4.1. Algorithm(Pseudocode)
 
 ```.txt
-SUBROUTINE Kruskal(G)
-    sort_edges_by_weight(G.E)
-    T <- set()
-
-    FOR EACH edge (u, v) IN G.E DO
-        IF find(u) != find(v) THEN
-            T.add((u, v))
-            union(u, v)
-        END IF
+SUBROUTINE FloydWarshall(dist, n)
+    FOR k <- 1 TO len(G.V) DO
+        FOR i <- 1 TO len(G.V) DO
+            FOR j <- 1 TO len(G.V) DO
+                IF dist[i][j] > dist[i][k] + dist[k][j] THEN
+                    dist[i][j] <- dist[i][k] + dist[k][j]
+                END IF
+            END FOR
+        END FOR
     END FOR
 
-    RETURN T
+    RETURN dist
 END SUBROUTINE
 ```
 
@@ -131,7 +124,11 @@ END SUBROUTINE
 
 #### 4.2.1. Time Complexity
 
-$T(V, E) = O(E\text{log}E)$
+$T(V, E) = O(V^3)$
+
+#### 4.2.2. Space Complexity
+
+$S(V, E) = S(V^2)$
 
 ---
 
