@@ -108,33 +108,69 @@ so, $S(n)=O(n)$
 
 ---
 
-## 4. Quick Sort
+## 4. Kruskal's Algorithm
 
 ### 4.1. Algorithm(Pseudocode)
 
 ```.txt
-SUBROUTINE QuickSort(A, start, end)
-    IF start > end THEN
-        RETURN A
-    END IF
+SUBROUTINE Kruskal(G)
+    sort_edges_by_weight(G.E)
+    T <- set()
 
-    pi <- Partition(A, start, end)
-    QuickSort(A, start, pi-1)
-    QuickSort(A, pi+1, end)
-END SUBROUTINE
-
-SUBROUTINE Partition(A, start, end)
-    pivot <- A[end]
-    i <- start - 1
-
-    FOR j <- start TO end-1 DO
-        IF A[j] < pivot THEN
-            i <- i + 1
-            Swap A[i] AND A[j]
+    FOR EACH edge (u, v) IN G.E DO
+        IF find(u) != find(v) THEN
+            T.add((u, v))
+            union(u, v)
         END IF
     END FOR
-    Swap A[i+1] AND A[high]
 
-    RETURN i+1
+    RETURN T
 END SUBROUTINE
 ```
+
+### 4.2. Complexity Analysis
+
+#### 4.2.1. Time Complexity
+
+$T(V, E) = O(E\text{log}E)$
+
+---
+
+## 5. Prim's Algorithm
+
+### 5.1. Algorithm(Pseudocode)
+
+```.txt
+SUBROUTINE Prims(G, start)
+    key <- []
+    parent <- []
+
+    FOR EACH vertex v in G.V DO
+        key[v] <- INFINITY
+        parent[v] <- NULL
+    END FOR
+
+    key[start] <- 0
+    Q <- MinHeap(G.V, key)
+
+    WHILE Q != EMPTY DO
+        u <- Q.extractMin()
+
+        FOR EACH vertex v adjacent to u DO
+            IF v IN Q AND weight(u, v) < key[v] THEN
+                key[v] <- weight(u, v)
+                parent[v] <- u
+                decreaseKey(Q, v, key[v])
+            END IF
+        END FOR
+    END WHILE
+
+    RETURN parent
+END SUBROUTINE
+```
+
+### 5.2. Complexity Analysis
+
+#### 5.2.1. Time Complexity
+
+$T(V, E) = O(E\text{log}V)$
