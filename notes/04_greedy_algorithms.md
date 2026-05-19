@@ -69,69 +69,41 @@ $T(n) = O(n^2)$
 
 ---
 
-## 3. Merge Sort
+## 3. Huffman Coding
 
 ### 3.1. Algorithm(Pseudocode)
 
 ```.txt
-SUBROUTINE MergeSort(A)
-    IF len(A) <= 1 THEN
-        RETURN A
-    END IF
+SUBROUTINE Huffman(C, n)
+    Q <- minHeap(C)
 
-    midPoint <- len(A) / 2
+    FOR i <- 1 TO n - 1 DO
+        create node n
+        x <- Q.extract()
+        y <- Q.extract()
 
-    leftHalf <- A[0 : midPoint]
-    rightHalf <- A[midPoint : len(A)]
+        n.left <- x
+        n.right <- y
 
-    leftHalf <- MergeSort(leftHalf)
-    rightHalf <- MergeSort(rightHalf)
+        n.data <- x.freq + y.freq
 
-    RETURN Merge(leftHalf, rightHalf)
+        Q.insert(n)
+    END FOR
+
+    RETURN extract(Q)
 END SUBROUTINE
 
-SUBROUTINE Merge(leftHalf, rightHalf)
-    i <- 0
-    j <- 0
-    result <- []
-
-    WHILE i < len(leftHalf) AND j < len(rightHalf) DO
-        IF leftHalf[i] < rightHalf[j] THEN
-            APPEND leftHalf[i] TO result
-            i <- i + 1
-        ELSE
-            APPEND rightHalf[j] TO result
-            j <- j + 1
-        END IF
-    END WHILE
-
-    WHILE i < len(leftHalf) DO
-        APPEND leftHalf[i] TO result
-        i <- i + 1
-    END WHILE
-
-    WHILE j < len(rightHalf) DO
-        APPEND rightHalf[j] TO result
-        j <- j + 1
-    END WHILE
-
-    RETURN result
-END SUBROUTINE
 ```
 
 ### 3.2. Complexity Analysis
 
 #### 3.2.1. Time Complexity
 
-The recurrence relation for merge sort algorithm is,
-
-$T(n) = \begin{cases} 2T(n/2)+O(n) & \text{if } n > 1 \\ 1 & \text{if } n = 1 \end{cases}$
-
-Solving the recurrence relation we get $T(n)=\Theta(n\text{log}_2n)$
+$T(n) = O(n) \text{ Building heap } + O(n\text{log}_2n) \text{ Each insert/extract } = O(n\text{log}_2n)$
 
 #### 2.2.2. Space Complexity
 
-Uses extra memory for left and right sub arrays.
+Creates node n in each iteration.
 so, $S(n)=O(n)$
 
 ---
