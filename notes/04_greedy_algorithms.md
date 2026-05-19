@@ -35,38 +35,29 @@ $S(n)=O(1)$
 
 ---
 
-## 1. Min-Max Finding (Divide and Conquer)
+## 2. Job Sequencing with Deadlines
 
 ### 2.1. Algorithm(Pseudocode)
 
 ```.txt
-SUBROUTINE MinMax(A, start, end)
-    IF start == end THEN RETURN (A[start], A[start])
-    IF end == start + 1 THEN
-        IF A[start] < A[end] THEN
-            RETURN (A[start], A[end])
-        ELSE
-            RETURN (A[end], A[start])
-        END IF
-    END IF
+SUBROUTINE JobSequencing(jobs, n)
+    sort_desc_by_profit(jobs)
+    maxDeadline <- find_max_deadline(jobs)
 
-    mid <- start + (end - start) / 2
-    (min1, max1) <- MinMax(A, start, mid)
-    (min2, max2) <- MinMax(A, mid+1, end)
+    slot <- [1 : maxDeadline]
+    totalProfit <- 0
 
-    IF min1 < min2 THEN
-        min <- min1
-    ELSE
-        min <- min2
-    END IF
+    FOR i <- 0 TO n - 1 DO
+        FOR j <- jobs[i].deadline DOWN TO 1 DO
+            IF slot[j] == EMPTY THEN
+                slot[j] <- jobs[i].id
+                totalProfit <- totalProfit + jobs[i].profit
+                BREAK
+            END IF
+        END FOR
+    END FOR
 
-    IF max1 > max2 THEN
-        max <- max1
-    ELSE
-        max <- max2
-    END IF
-
-    RETURN (min, max)
+    RETURN (slot, totalProfit)
 END SUBROUTINE
 ```
 
@@ -74,11 +65,7 @@ END SUBROUTINE
 
 #### 2.2.1. Time Complexity
 
-The recurrence relation for divide and conquer min-max finding algorithm is,
-
-$T(n) = \begin{cases} 2T(n/2)+1 & \text{if } n > 2 \\ 1 & \text{if } n \leq 2 \end{cases}$
-
-Solving the recurrence relation we get $T(n)=\Theta(n)$
+$T(n) = O(n^2)$
 
 ---
 
