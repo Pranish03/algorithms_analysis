@@ -174,3 +174,42 @@ END SUBROUTINE
 #### 5.2.1. Time Complexity
 
 $T(V, E) = O(E\text{log}V)$
+
+---
+
+## 6. Dijkastra's Algorithm
+
+### 6.1. Algorithm(Pseudocode)
+
+```.txt
+SUBROUTINE Dijkastra(G, source)
+    FOREACH vertex v in G.V DO
+        dist[v] <- INFINITY
+        parent[v] <- NULL
+        visited[v] <- FALSE
+    END FOREACH
+
+    dist[source] <- 0
+
+    FOR i <- 1 TO |G.V| DO
+        u <- vertex with minimum dist[u] where visited[u] == FALSE
+
+        FOREACH vertex v adjacent to u DO
+            IF visided[v] == FALSE AND dist[u] + weight(u, v) < dist[v] THEN
+                dist[v] <- dist(u) + weight(u, v)
+                parent[v] <- u
+            END IF
+        END FOREACH
+    END FOR
+
+    RETURN (dist, parent)
+END SUBROUTINE
+```
+
+### 6.2. Complexity Analysis
+
+#### 6.2.1. Time Complexity
+
+$T(V, E) = O(V^2)$ using simple array
+
+$T(V, E) = O((V+E)\text{log}V)$ using priority queue
